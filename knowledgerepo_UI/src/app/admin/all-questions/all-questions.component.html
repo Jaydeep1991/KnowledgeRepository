@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="search-hero form-group  col-12">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching ">
+      </div>
+    </div>
+    <div class="row">
+       <div class="col-xs-6 col-sm-12 col-md-6 col-lg-4 border-styles">
+        <h5 class="text-center">List of Questions</h5>
+        <div class="questions_list" *ngFor="let questions of questionsList | filter:searchText">
+            <p class="link_style"><b>{{ questions.question }}</b></p>
+            <p><b>Ans:</b>{{ questions.answer }}</p>
+        </div>
+        <mat-paginator [pageSizeOptions]="[20]" showFirstLastButtons></mat-paginator>
+       </div>
+       <div class="col-xs-6 col-sm-12 col-md-6 col-lg-8 brd-style ">
+        <!-- <p class="link_style"><b>What is css? Explain how many types of css?</b></p>
+        <p><span class="company">Aroha/10-2-2020</span></p>
+        <p><b>Ans:</b>Css is cascading style sheet.Difference Between the 3 Types of CSS Styles: Inline, External and Internal. In this tutorial, you will learn the difference between the three types of CSS styles: inline, external, and internal.</p>
+        <p class="mar-top">please add comment on this question</p>
+        <textarea cols="90" rows="5" placeholder="write answer....."></textarea>
+        <div class="text-right">
+            <button class="btn btn-primary mr-1">Comment</button>
+          </div> -->
+       </div>
+   </div>
+

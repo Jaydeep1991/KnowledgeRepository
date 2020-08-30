@@ -1,0 +1,71 @@
+<!-- Header 
+<app-header-log-in></app-header-log-in>-->
+
+<div class="component">
+    <!-- <div class="topnav">
+        <!-- <i class="material-icons">list</i> -->
+        <!-- <a>User DashBoard</a>
+        <div class="topnav-right"> -->
+            <!-- <a> Name:- {{userName}}</a>
+            <a>Role:- {{userRole}}</a> -->
+            <!-- <a> Company:- {{userCompany}}</a>
+            <a> Department:- {{userDepartment}}</a>
+            <a>Project:- {{userProject}}</a>
+            <a>Team:- {{userTeam}}</a> -->
+        <!-- </div> -->
+    <!-- </div> -->
+
+    <div class="row topnav">
+        <div class="col-md-2">
+           <a>User DashBoard</a>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+           <a> Name:- {{userName}}</a>
+        </div>
+        <div class="col-md-2">
+           <a>Role:- {{userRole}}</a> 
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <div class="left">
+                <!-- <div class="item">
+                    <i class="material-icons">list</i><br>
+                </div> -->
+                <div class="item" (click)="UserDetails();">
+                    <i class="material-icons">account_box</i>
+                    <a>Profile</a>
+                </div>
+                <div class="item active" (click)="UploadComponent();">
+                    <i class="material-icons">cloud_upload</i>
+                    <a>Upload Doc</a>
+                </div>
+                <div class="item" (click)="onShow();">
+                    <i class="material-icons"> filter_none </i>
+                    <a>Show Doc</a>
+                </div>
+                <div class="item" (click)="SearchComponent();">
+                    <i class="material-icons">search</i>
+                    <a>Search By Type</a>
+                </div>
+
+                <div class="item" (click)="logOut();">
+                    <i class="material-icons">power_settings_new</i>
+                    <a href="#">Log Out</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            <app-search *ngIf="loadSearchComponent"></app-search>
+            <app-show *ngIf="loadShowComponent"></app-show>
+            <app-upload *ngIf="loadUploadComponent"></app-upload>
+            <app-view-file *ngIf="showDocumant"></app-view-file>
+            <app-user-details *ngIf="showDetails"></app-user-details>
+        </div>
+    </div>
+    <appFooter-component></appFooter-component>
+</div>

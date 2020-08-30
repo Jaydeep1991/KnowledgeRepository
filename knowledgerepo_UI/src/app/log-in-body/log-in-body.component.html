@@ -1,0 +1,126 @@
+<!-- Header
+<app-headder></app-headder> -->
+
+<body class="my-body">
+    <div class="my-area">
+        <ol class="my-circles">
+            <li>doc</li>
+            <li>pdf</li>
+            <li>docx</li>
+            <li>png</li>
+            <li>jpeg</li>
+            <li>mp3</li>
+            <li>mp4</li>
+            <li>pptx</li>
+            <li>ppt</li>
+            <li>jpg</li>
+            <li>web</li>
+            <li>doc</li>
+            <li>pdf</li>
+            <li>docx</li>
+            <li>png</li>
+            <li>jpeg</li>
+            <li>mp3</li>
+            <li>mp4</li>
+            <li>pptx</li>
+            <li>ppt</li>
+            <li>jpg</li>
+            <li>web</li>
+            <li>pdf</li>
+        </ol>
+    </div>
+    <div class="my-loginbackground">
+        <div id="login" *ngIf="!showLoginForm">
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                    <!-- Icon -->
+                    <div class="fadeIn first">
+                        <img src="assets/image/0.png" class="img-fluid" id="icon" alt="User Icon" height="100"
+                            width="180" />
+                        <h2 style="color:#969799;">Knowledge Repository</h2>
+
+                    </div>
+                    <br>
+                    <!-- Login Form -->
+
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <app-error-alert [setMessage]="setMessage"></app-error-alert>
+                        <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+                        <input type="text" pInputText formControlName="eMail" id="login" class="fadeIn second"
+                            placeholder="User Email" required style="font-family: 'Courier New', Courier, monospace;">
+                        <div *ngIf="f.eMail.errors && f.eMail.touched" class="invalid">
+                            <div *ngIf="f.eMail.errors.required">
+                                <alert type="danger" [dismissible]="true">
+                                    <strong>Email is required</strong>
+                                </alert>
+
+                            </div>
+                        </div>
+                        <input type="password" pInputText formControlName="userPwd" id="password" class="fadeIn third"
+                            placeholder="password" required style="font-family: 'Courier New', Courier, monospace;">
+                        <div *ngIf="f.userPwd.errors && f.userPwd.touched" class="invalid">
+                            <div *ngIf="f.userPwd.errors.required">
+                                <alert type="danger" [dismissible]="true">
+                                    <strong>Password is required</strong>
+                                </alert>
+                            </div>
+                        </div>
+                        <input type="submit" class="fadeIn fourth" value="Log In"
+                            style="font-family: 'Courier New', Courier, monospace;">
+
+                    </form>
+                    <!-- Remind Passowrd -->
+                    <div id="formFooter">
+                        <a class="underlineHover" id="showForgot" (click)="showLogin()"
+                            style="font-family: 'Courier New', Courier, monospace;">Forgot Password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Forgot Password -->
+        <div id="forgot" *ngIf="showLoginForm">
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                    <!-- Icon -->
+                    <div class="fadeIn first">
+                        <img src="assets/image/0.png" id="icon" alt="User Icon" height="100" width="180" />
+                        <h2 style="color:#969799;">KNOWLEDGE REPOSITORY</h2>
+                    </div>
+                    <br>
+                    <app-error-alert [setMessage]="setMessage"></app-error-alert>
+                    <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+                    <!-- Generate PassWord      -->
+                    <form  [formGroup]="OTPForm" (ngSubmit)="changePassword()">
+                        <input *ngIf="getOtpButton" type="text" formControlName="eMailForOtp" id="login" class="fadeIn second"
+                            placeholder="Enter Email" required style="font-family: 'Courier New', Courier, monospace;">
+
+                        <input  *ngIf="getOtpButton" type="button" class="fadeIn fourth" value="Generate OTP"
+                            style="font-family: 'Courier New', Courier, monospace;" (click)="getOtp()">
+
+                    <!-- Validate Otp
+                    <form *ngIf="enterNewPassword" [formGroup]="validate" (ngSubmit)="changePassword()">-->
+                        <input *ngIf="enterNewPassword" type="text" formControlName="otpInt" id="login" class="fadeIn second"
+                            placeholder="Enter OTP" required style="font-family: 'Courier New', Courier, monospace;">
+
+                        <input *ngIf="enterNewPassword" type="text" formControlName="newPassword" id="login" class="fadeIn second"
+                            placeholder="Enter New Password" required
+                            style="font-family: 'Courier New', Courier, monospace;">
+
+                        <input *ngIf="enterNewPassword" type="submit" class="fadeIn fourth" value="Submit"
+                            style="font-family: 'Courier New', Courier, monospace;" (click)="changePassword()">
+                    </form>
+                    <app-loading *ngIf="loading"></app-loading>
+                    <!-- Login Again -->
+                    <div id="formFooter">
+                        <a class="underlineHover" id="showLogin" (click)="showLogin()"
+                            style="font-family: 'Courier New', Courier, monospace;">LogIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<!-- Footer-->
+<appFooter-component></appFooter-component>

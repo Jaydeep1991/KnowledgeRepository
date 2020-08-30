@@ -1,0 +1,62 @@
+.secondRow{
+    background-color: #337ab7;
+    height: 59px;
+    text-align: center;
+}
+.mat-raised-button{
+    margin-top: 9px;
+    outline: none;
+}
+.sidenav{
+    background: #337ab7;
+    display: inline-block;
+    white-space: nowrap;
+    width: 250px;
+    -webkit-transition: width .5s;
+    transition: width .5s;
+    height: 700px !important;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 0px 16px;
+    
+        
+}
+a{
+    cursor: pointer;
+}
+.material-icons{
+    margin: 15px;
+    width: 20px;
+    color: #fff;
+    font-size: 30px;
+    vertical-align: middle !important;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+span{
+    font-weight: bold;
+    cursor: pointer;
+}
+.side-left{
+    /* margin-right: 70px; */
+    background-color:teal;
+    border-radius: 10px;
+}
+li{
+    text-align: left;
+    cursor: pointer;
+    
+    
+}
+.error{
+    margin-left: 20px;
+    color: red;
+}
+mat-card-title{
+    text-align: left;
+}
+ul {
+    list-style-type: square;
+}

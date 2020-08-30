@@ -1,0 +1,48 @@
+<div class="card m-3">
+    <app-error-alert [setMessage]="setMessage"></app-error-alert>
+    <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+<h5 class="card-header">Create Questions</h5>
+<div class="card-body">
+    <form [formGroup]="addQuestions" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col-6">
+                <label>Client Name</label>
+                <select formControlName="clientId" class="form-control" required >
+                    <option value="">--Select--</option>    
+                    <option *ngFor="let company of companyNames" [(ngValue)]="company.companyId">{{company.companyName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-6">
+                <label>Job function</label>
+                <input type="text"pInputText formControlName="jobFunction" class="form-control" required >
+            </div>
+            <div class="form-group col-6">
+                <label>Add Topic</label>
+                <input type="text"pInputText formControlName="topic" class="form-control" required >
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-6">
+                <label>Add Question</label>
+                <textarea type="textarea"pInputText formControlName="question" class="form-control" required ></textarea>
+            </div>
+            <div class="form-group col-6">
+                <label>Add Answer</label>
+                <textarea type="textarea"pInputText formControlName="answer" class="form-control" required ></textarea>
+            </div>
+            <!-- <button mat-raised-button>Add</button>
+            <button mat-raised-button>Reset</button> -->
+        </div>
+        <div class="text-center">
+            <button mat-raised-button color="primary" [disabled]="!addQuestions.valid"  style="margin-right: 5px;">
+                <mat-icon>save</mat-icon>
+                Submit</button>
+            <button mat-raised-button color="warn" type="reset">
+                <mat-icon>clear</mat-icon>
+                Cancel</button>
+        </div>
+    </form>
+</div>
+</div>

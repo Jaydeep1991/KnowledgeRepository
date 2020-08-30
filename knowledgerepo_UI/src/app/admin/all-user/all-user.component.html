@@ -1,0 +1,147 @@
+<div *ngIf="showUser">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell [style.background-color]="tableHeader" *matHeaderCellDef> User Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell [style.background-color]="tableHeader" *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.eMail}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell [style.background-color]="tableHeader" *matHeaderCellDef> PhoneNumber </th>
+      <td mat-cell *matCellDef="let element"> {{element.pHone}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <!-- <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef> Department </th>
+      <td mat-cell *matCellDef="let element"> {{element.userdepartment}} </td>
+    </ng-container> -->
+
+    <!-- Weight Column -->
+    <!-- <ng-container matColumnDef="project">
+      <th mat-header-cell *matHeaderCellDef> Project </th>
+      <td mat-cell *matCellDef="let element"> {{element.userProjectName}} </td>
+    </ng-container> -->
+
+    <!-- <ng-container matColumnDef="team">
+      <th mat-header-cell *matHeaderCellDef> Team </th>
+      <td mat-cell *matCellDef="let element"> {{element.userTeamName}} </td>
+    </ng-container> -->
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell [style.background-color]="tableHeader" *matHeaderCellDef>Role </th>
+      <td mat-cell *matCellDef="let element"> {{element.userRole}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell  [style.background-color]="tableHeader" *matHeaderCellDef>Edit </th>
+      <td mat-cell *matCellDef="let element"> 
+        <button mat-fab color="primary"  (click)="edit(element.eMail)"><mat-icon>edit</mat-icon></button>
+      
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell [style.background-color]="tableHeader"  *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let element"  > 
+        <div >
+        <button mat-fab color="warn" *ngIf="element.userName!=isUserName"  (click)="delete(element.eMail)"><mat-icon>delete</mat-icon></button>
+      </div>
+
+      </td>
+    </ng-container>
+    <!-- Symbol Column -->
+
+    <tr mat-header-row [style.background-color]="tableHeader" *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+</div>
+
+<div>
+  <app-error-alert [setMessage]="setMessage"></app-error-alert>
+  <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+</div>
+
+
+<div *ngIf="editForm">
+  <div class="card m-3">
+    <!-- <span class="material-icons"  (click)="showDetails()">
+      cancel
+    </span> -->
+    <button mat-mini-fab style="background-color: black;color: white;"  (click)="showDetails()">
+      <mat-icon>clear</mat-icon>
+      </button>
+    <h5 class="card-header">Edit User </h5>
+      <div class="card-body">
+        <form [formGroup]="editUserData" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+           <!-- <div class="form-group col">
+              <label>Company Name</label>
+              <select pInputText formControlName="userCompany" (change)="onChangeGetDepartment($event)"
+                class="form-control" required>
+                <option>--Select--</option>
+                <option *ngFor="let company of companyNames" [value]="company.companyName">
+                  {{company.companyName}}</option>
+              </select>
+            </div>
+            <div class="form-group col">
+              <label>Department Name</label>
+              <select pInputText formControlName="userdepartment" (change)="onChangeGetProject($event)"
+                class="form-control" required>
+                <option>--Select--</option>
+                <option *ngFor="let department of departmentNames" [value]="department.departmentName">
+                  {{department.departmentName}}</option>
+              </select>
+            </div>
+            <div class="form-group col">
+              <label>Project Name</label>
+              <select pInputText formControlName="userProjectName" (change)="onChangeGetTeam($event)"
+                class="form-control" required>
+                <option>--Select--</option>
+                <option *ngFor="let project of projectNames" [value]="project.projectName">
+                  {{project.projectName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Team Name</label>
+              <select pInputText formControlName="userTeamName" class="form-control" required>
+                <option>--Select--</option>
+                <option *ngFor="let team of teamNames" [value]="team.teamName">
+                  {{team.teamName}}</option>
+              </select>
+            </div> -->
+            <div class="form-group col">
+              <label>Select Role</label>
+              <select pInputText formControlName="userRole" class="form-control" required>
+                <option value="">--Select--</option>
+                <option value="ROLE_ADMIN">Admin</option>
+                <option value="ROLE_MANAGER">Project Manager</option>
+                <option value="ROLE_TEAMLEAD">Team Lead</option>
+                <option value="ROLE_USER">User</option>
+              </select>
+            </div>
+            <div class="form-group col-5">
+              <label>User Email</label>
+              <input type="text" value='{{emailForEdit}}' pInputText formControlName="eMail" class="form-control" readonly disabled>
+            </div>
+          </div>
+          <div class="text-center">
+            <button mat-raised-button color="primary" [disabled]="!editUserData.valid"  type="submit">
+              <mat-icon>save</mat-icon>
+              Update</button>
+            <button mat-raised-button color="warn" style="margin-left: 5px;" type="reset">
+              <mat-icon>clear</mat-icon>
+              Cancel</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<div class="card m-3" *ngIf="showClient">
+    <app-error-alert [setMessage]="setMessage"></app-error-alert>
+    <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+    <form [formGroup]="createCompanyData" (ngSubmit)="onSubmit()">
+        <h5 class="card-header" >Create client
+          <!-- <span (click)="toggle()" class="material-icons icon-style">
+            add
+            </span> -->
+            <button mat-mini-fab color="primary" (click)="toggle()"><mat-icon>add</mat-icon></button>
+          </h5>
+        <div *ngIf="show">
+        <div class="form-row">
+            <div class="form-group  col-5 ">
+                <label>Client Name</label>
+                <input type="text" pInputText formControlName="companyName" class="form-control" required>
+            </div>
+        </div>
+        <div class="text-center">
+            <button mat-raised-button color="primary" [disabled]="!createCompanyData.valid" type="submit" style="margin-right: 5px;">
+              <mat-icon  style="color:white;">save</mat-icon>
+              Create</button>
+            <button mat-raised-button color="warn" type="reset">
+              <mat-icon  style="color:white;">clear</mat-icon>
+              Cancel</button>
+        </div>
+        </div>
+    </form>
+        <div class="card-body" >
+            <h5 class="card-header">List of Clients</h5>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+    
+              <ng-container matColumnDef="CompanyId">
+                <th mat-header-cell *matHeaderCellDef> Client Id</th>
+                <td mat-cell *matCellDef="let element"> {{element.companyId}} </td>
+              </ng-container>
+              <ng-container matColumnDef="CompanyName">
+                <th mat-header-cell *matHeaderCellDef> Client Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="Edit">
+                <th mat-header-cell *matHeaderCellDef>Edit </th>
+                <td mat-cell *matCellDef="let element" > 
+                  <!-- <span class="material-icons">
+                    create
+                    </span> -->
+                  <button mat-fab  (click)="edit(element.companyId,element.companyName)" ><mat-icon>edit</mat-icon></button>
+                  </td>
+             </ng-container>
+          
+             
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>    
+           
+        </div>
+    </div>
+<!-- <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator> -->
+<div *ngIf="editClient">
+    <div class="card m-3">
+      <!-- <span class="material-icons"  (click)="showDetails()">
+        cancel
+      </span> -->
+      <button mat-mini-fab style="background-color: black;color: white;"  (click)="showDetails()">
+      <mat-icon>clear</mat-icon>
+      </button>
+      <h5 class="card-header">Edit Client </h5>
+        <div class="card-body">
+          <form [formGroup]="editClientData" (ngSubmit)="updateClient()">
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Company ID</label>
+                    <input type="text" value='{{companyIdForEdit}}' pInputText formControlName="companyId" class="form-control" disabled>
+                </div>
+                <div class="form-group col-5">
+                    <label>Client Name</label>
+                    <input type="text" value='{{companyNameForEdit}}'  pInputText formControlName="companyName" class="form-control" required>
+                </div>
+            </div>
+            <div class="text-center">
+              <button mat-raised-button color="primary" type="submit">
+                <mat-icon>save</mat-icon>
+                Update</button>
+            </div>
+          </form>
+        </div>
+    </div>
+    </div>

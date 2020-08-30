@@ -1,0 +1,43 @@
+<div class="card m-3">
+    <app-error-alert [setMessage]="setMessage"></app-error-alert>
+    <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+    <h5 class="card-header">Upload File</h5>
+    <div class="card-body">
+        <form [formGroup]="uploadFileData" (ngSubmit)="onUpload()">
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Pick a file to upload</label><br>
+                    <input type="file" style="display: inline;" formControlName="file" (change)="onFileSelected($event)"
+                        #fileInput class="form-control" required>
+                    <button type="button" style="display: none;" (click)="fileInput.click()">Select File</button>
+                </div>
+                <div class="form-group col">
+                    <label>Upload To</label>
+                    <select formControlName="uploadTo" class="form-control" required>
+                        <option value="">--Select--</option>
+                        <option value="Company">Company ( {{userCompany}} )</option>
+                        <option value="Department">Department ({{userDepartment}})</option>
+                        <option value="Project">Project ({{userProject}})</option>
+                        <option value="Team">Team ({{userTeam}})</option>
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <label>Select tag</label>
+                    <select formControlName="multiTag" class="form-control" required multiple>
+                        <option *ngFor="let tag of tagNames"  [(ngValue)]="tag.tagName">
+                            {{tag.tagName}}</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="text-center">
+                <button mat-raised-button color="primary" type="submit" [disabled]="!uploadFileData.valid">
+                    <mat-icon>save</mat-icon>
+                    Upload</button>
+                <button mat-raised-button color="warn" type="reset" style="margin-left: 5px;">
+                    <mat-icon>clear</mat-icon>
+                    Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

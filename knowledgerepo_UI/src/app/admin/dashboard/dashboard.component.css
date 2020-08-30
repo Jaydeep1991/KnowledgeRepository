@@ -1,0 +1,11 @@
+.card-body{
+    margin-top: 20px;
+}
+.btn-styles{
+    height: 40px;
+    margin-top: 31px;
+}
+.mat-raised-button{
+    outline: none;
+    color: white;
+}

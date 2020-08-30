@@ -1,0 +1,13 @@
+label{
+    font-style: oblique;
+    color: blue;
+    font-weight: bold;
+    
+ }
+ .card,.card-header{
+    border-top-left-radius: 20px;
+    
+ }
+ .card{
+    border-bottom-right-radius: 20px;
+ }

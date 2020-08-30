@@ -1,0 +1,23 @@
+/* FORM TYPOGRAPHY*/
+
+  
+input[type=button]:hover,input[type=reset]:hover  {
+  background-color: #39ace7;
+} 
+label{
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
+input[type=text]:focus,input[type=date]:focus ,input[type=password]:focus,input[type=number]:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
+input[type=text]:placeholder,input[type=date]:placeholder,input[type=number]:placeholder  {
+  color: #312a2a;
+}
+.mat-raised-button{
+  outline: none;
+}
+.card,.card-header{
+  border-top-left-radius: 18px;
+}

@@ -1,0 +1,107 @@
+<div class="row" *ngIf="x">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="card m-3">
+            <app-error-alert [setMessage]="setMessage"></app-error-alert>
+            <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+            <h5 class="card-header">Search By Tag</h5>
+            <div class="card-body">
+                <form [formGroup]="searchByTagData" (ngSubmit)="searchByTag()">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Select Tag</label>
+                            <select formControlName="searchByTagName" class="form-control" required>
+                                <option value="">--Select--</option>
+                                <option *ngFor="let tag of tagNames" [(ngValue)]="tag.tagName">
+                                    {{tag.tagName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button mat-raised-button color="primary" type="submit" [disabled]="!searchByTagData.valid">
+                            <mat-icon>search</mat-icon>
+                            Search</button>
+                        <button mat-raised-button color="warn" type="reset" style="margin-left: 5px;">
+                            <mat-icon>clear</mat-icon>
+                            Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="card m-3">
+            <app-error-alert [setMessage]="setMessage"></app-error-alert>
+            <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+            <h5 class="card-header">Search By Type</h5>
+            <div class="card-body">
+                <form [formGroup]="searchByTypeData" (ngSubmit)="searchByType()">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Select Type</label>
+                            <select formControlName="searchByTypeName" class="form-control" required>
+                                <option value="">--Select--</option>
+                                <option value="txt">Text</option>
+                                <option value="pdf">PDF</option>
+                                <option value="png">Png</option>
+                                <option value="jpeg">Jpeg</option>
+                                <option value="mp4">Video</option>
+                                <option value="docx">Docx</option>
+                                <option value="xlsx">xlsx</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button mat-raised-button color="primary" type="submit" [disabled]="!searchByTypeData.valid">
+                            <mat-icon>search</mat-icon>
+                            Search</button>
+                        <button mat-raised-button color="warn" type="reset" style="margin-left: 5px;">
+                            <mat-icon>clear</mat-icon>
+                            Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="y">
+    <app-search-file ></app-search-file>
+    
+    <!--<table class="table">
+        <thead>
+            <td>File Name</td>
+            <td>Uploaded By</td>
+            <td>File Tag</td>
+            <td>View</td>
+        </thead>
+        <tr *ngFor="let fileData of FileDetailsTag">
+            <td>{{fileData.fileName}}</td>
+            <td>{{fileData.uploadBy}}</td>
+            <td>{{fileData.tag}}</td>
+            <td *ngIf="fileData.storage=='Cloud'"><a href="{{fileData.fileUrl}}" target="_blank" style="color: rgb(43, 128, 224); " >View</a></td>
+            <td *ngIf="fileData.storage=='File'"><i class="fa fa-clone"  (click)="viewFile(fileData.fileUrl)" aria-hidden="true" style="color: rgb(22, 148, 170);"></i></td>
+         </tr>
+    </table>-->
+
+</div>
+
+<div *ngIf="z">
+    <app-search-type></app-search-type>
+   <!-- <table class="table">
+        <thead>
+            <td>File Name</td>
+            <td>Uploaded By</td>
+            <td>File Tag</td>
+            <td>View</td>
+        </thead>
+        <tr *ngFor="let fileData of FileDetailsType">
+            <td>{{fileData.fileName}}</td>
+            <td>{{fileData.uploadBy}}</td>
+            <td>{{fileData.tag}}</td>
+            <td *ngIf="fileData.storage=='Cloud'"><a href="{{fileData.fileUrl}}" target="_blank"
+                    style="color: rgb(43, 128, 224); ">View</a></td>
+            <td *ngIf="fileData.storage=='File'"><i class="fa fa-clone" (click)="viewFile(fileData.fileUrl)"
+                    aria-hidden="true" style="color: rgb(22, 148, 170);"></i></td>
+        </tr>
+    </table>-->
+</div>

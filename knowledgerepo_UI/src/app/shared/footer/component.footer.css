@@ -1,0 +1,18 @@
+/* .container-fluid{
+    background-color: black;
+    color: white;
+    width: 1364px;
+    
+} */
+.footer{
+    background-color: #337ab7;
+    color: white;
+    text-align: center;
+    position: flex;
+    bottom: 0;
+    width: 100%;
+    padding-top: 10px;
+}
+hr{
+    color: #311b92;
+}

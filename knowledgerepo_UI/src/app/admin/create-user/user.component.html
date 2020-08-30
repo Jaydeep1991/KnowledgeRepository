@@ -1,0 +1,41 @@
+<div class="card m-3">
+    <app-error-alert [setMessage]="setMessage"></app-error-alert>
+    <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+    <h5 class="card-header">Create User</h5>
+    <div class="card-body">
+        <form [formGroup]="createUserData" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>User Name</label>
+                    <input type="text" pInputText formControlName="userName" class="form-control" required>
+                </div>
+                <div class="form-group col-5">
+                    <label>Email Id</label>
+                    <input #email type="text" pInputText formControlName="eMail"  class="form-control" oninput="this.value = this.value.toLowerCase()" required>
+                </div>
+                <div class="form-group col-5">
+                    <label>Phone Number</label>
+                    <input type="text" pInputText formControlName="pHone" class="form-control" required>
+                </div>
+                <div class="form-group col-5">
+                    <label>Select Role</label>
+                    <select pInputText formControlName="userRole" class="form-control" required>
+                        <option value="" selected disabled hidden>Select Role</option>
+                        <option value="ROLE_ADMIN">Admin</option>
+                        <option value="ROLE_MANAGER">Project Manager</option>
+                        <option value="ROLE_TEAMLEAD">Team Lead</option>
+                        <option value="ROLE_USER">User</option>
+                    </select>
+                </div>
+            </div>
+            <div class="text-center">
+                <button mat-raised-button color="primary" [disabled]="!createUserData.valid" style="margin-right: 5px;">
+                    <mat-icon  style="color:white;">save</mat-icon>
+                    Create</button>
+                <button  mat-raised-button color="warn" type="reset">
+                    <mat-icon style="color:white;">clear</mat-icon>
+                    Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="card m-3">
+        <app-error-alert [setMessage]="setMessage"></app-error-alert>
+        <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+    <h5 class="card-header">Create Project</h5>
+    <div class="card-body">
+        <form [formGroup]="createProjectData" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Company Name</label>
+                    <select formControlName="companyName" (change)="onChange($event)"   class="form-control" required>
+                        <option value="">--Select--</option>
+                        <option *ngFor="let company of companyNames" [value]="company.companyName">
+                            {{company.companyName}}</option>
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <label>Department Name</label>
+                    <select formControlName="departmentName" class="form-control" required>
+                        <option value="">--Select--</option>
+                        <option *ngFor="let department of departmentNames" [value]="department.departmentName">
+                            {{department.departmentName}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-5">
+                    <label>Project Name</label>
+                    <input type="text" pInputText formControlName="projectName" class="form-control" required>
+                </div>
+            </div>
+            <div class="text-center">
+                <button  mat-raised-button color="primary" type="submit" [disabled]="!createProjectData.valid" style="margin-right: 5px;">
+                    <mat-icon>save</mat-icon>
+                    Create</button>
+                <button  mat-raised-button color="warn" type="reset">
+                    <mat-icon>clear</mat-icon>
+                    Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

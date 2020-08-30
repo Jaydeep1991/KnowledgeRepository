@@ -1,0 +1,135 @@
+<!-- Header 
+<app-headder></app-headder>
+-->
+<div class="component-fluid">
+    <!-- <div class="row header">
+        <div class="topnav">
+            <!-- <i class="material-icons">list</i> -->
+
+            <!-- <div class="topnav-right">
+                <a>Admin DashBoard</a>
+                <a> Name:- {{userName}}</a>
+                <a>Role:- {{userRole}}</a> -->
+                <!-- <a> Company:- {{userCompany}}</a>
+            <a> Department:- {{userDepartment}}</a>
+            <a>Project:- {{userProject}}</a>
+            <a>Team:- {{userTeam}}</a> -->
+            <!-- </div>
+        </div>
+    </div> --> 
+     <div class="row topnav">
+         <div class="col-md-2">
+            <a>Admin DashBoard</a>
+         </div>
+         <div class="col-md-5"></div>
+         <div class="col-md-3">
+            <a> Name:- {{userName}}</a>
+         </div>
+         <div class="col-md-2">
+            <a>Role:- {{userRole}}</a> 
+         </div>
+
+     </div>
+
+
+
+    <!--
+<nav class="navbar navbar-expand-sm " style="color: #fff;">
+    <div (click)="CompanyMenu();" style="float: left;">
+        <i class="material-icons">list</i><a>Menu</a>
+    </div>
+    <nav class="navbar navbar-expand-sm" style="float: right;">
+        <ul class="navbar-nav">
+                <li class="nav-item"></li> || 
+            <li class="nav-item active"></li> ||
+            <li class="nav-item"></li>||
+        </ul>
+    </nav>
+</nav>
+-->
+
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 side_nav">
+            <div class="left">
+                <div class="item" (click)="viewProfile()">
+                    <i class="material-icons">portrait</i>
+                    <a>Profile</a>
+                </div>
+                <div class="item" (click)="UserComponent();">
+                    <i class="material-icons">person_add</i>
+                    <a>Create User</a>
+                </div>
+                <div class="item" (click)="CompanyComponent();">
+                    <i class="material-icons"> work_outline</i>
+                    <a>Client</a>
+                </div>
+                <div class="item active" (click)="DepartmentComponent();">
+                    <i class="material-icons">supervisor_account</i>
+                    <a>Create Department</a>
+                </div>
+                <div class="item" (click)="ProjectComponent();">
+                    <i class="material-icons">folder_shared</i>
+                    <a>Create Project</a>
+                </div>
+                <div class="item" (click)="TeamComponent();">
+                    <i class="material-icons">group_add</i>
+                    <a>Create Team</a>
+                </div>
+                <div class="item" (click)="TagComponent();">
+                    <i class="fas fa-tag"></i>
+                    <a>Create Tag</a>
+                </div>
+
+                <div class="item" (click)="AssignTeamComponent();">
+                    <i class="material-icons">group_add</i>
+                    <a>Assign user to Team</a>
+                </div>
+
+                <div class="item" (click)="questionsComponent();">
+                    <i class="material-icons">question_answer</i>
+                    <a>Questions</a>
+                </div>
+
+                <div class="item" (click)="dashBoardComponent();">
+                    <i class="fas fa-chart-line"></i>
+                    <a>Dash Board</a>
+                </div>
+
+                <div class="item" (click)="viewUser()">
+                    <i class="material-icons">details</i>
+                    <a>Users Details</a>
+                </div>
+
+                
+
+                <div class="item" (click)="logOut()">
+                    <i class="material-icons">power_settings_new</i>
+                    <a href="/">Log Out</a>
+                </div>
+                <!-- <div class="item" (click)="SignUpComponent()">
+                <i class="material-icons">account_circle</i>
+                <a href="/#signup">signUp</a>
+            </div>
+            <div class="item" (click)="LogInBodyComponent()">
+                <i class="material-icons">account_circle</i>
+                <a href="/#login">Login</a>
+            </div> -->
+            </div>
+        </div>
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            <app-company *ngIf="loadCompanyComponent"></app-company>
+            <app-department *ngIf="loadDepartmentCompnent"></app-department>
+            <app-project *ngIf="loadProjectComponent"></app-project>
+            <app-team *ngIf="loadTeamComponent"></app-team>
+            <app-create-user *ngIf="loadUserComponent"></app-create-user>
+            <app-tag *ngIf="loadTagComponent"></app-tag>
+            <app-dashboard *ngIf="loadgraphComponent"></app-dashboard>
+            <app-all-user *ngIf="viewUserdetails"></app-all-user>
+            <app-assign-team *ngIf="loadAssignTeamComponent"></app-assign-team>
+            <app-questions *ngIf="loadQuestionsComponent"></app-questions>
+            <app-user-profile *ngIf="userProfileComponent"></app-user-profile>
+        </div>
+    </div>
+</div>
+
+<appFooter-component></appFooter-component>

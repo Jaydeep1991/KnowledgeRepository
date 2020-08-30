@@ -1,0 +1,81 @@
+<div class="component">
+    <div class="row"></div>
+    <div class="row secondRow">
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-1">
+            <button mat-raised-button color="primary">
+                Sign Up
+            </button>
+        </div>
+        <div class="col-md-1">
+            <button mat-raised-button color="primary">
+                Login
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 sidenav">
+            <div class="side-left" (click)="showClient()">
+                <mat-icon>work</mat-icon>
+                <span>Client</span>
+                <br>
+            </div>
+            <div *ngIf="showCompany">
+                <div *ngFor="let company of listCompany" (click)="getComapnyId(company.companyId)">
+                    <ul>
+                        <li>{{company.companyName}}</li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="side-left" (click)="showTopics()">
+                <mat-icon>dns</mat-icon>
+                <span>Topics</span>
+                <br>
+            </div>
+            <div *ngIf="showListTopic">
+                <div *ngFor="let topic of listTopic" (click)="getTopicId(topic.topicsId)">
+                    <ul>
+                        <li>{{topic.topicName}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- <span class="error" *ngIf="error">
+            {{errorMessage}}
+        </span> -->
+        <div class="col-md-10" style="margin-top: 5px;">
+
+            <mat-card>
+                <mat-card-title>Top Questions</mat-card-title>
+                <div class="row">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2">
+                        <mat-card-actions>
+                            <button mat-raised-button color="accent" (click)="addQuestion()">Ask Question</button>
+                        </mat-card-actions>
+                    </div>
+                </div>
+                <div class="row" style="height: 10px;">
+                </div>
+                <div class="row" *ngIf="addQues">
+                    <div class="col-md-10">
+                        <mat-card>
+                            <mat-card-subtitle>
+                                Ask a public Question
+                            </mat-card-subtitle>
+                            <mat-card-content>
+                                <form [formGroup]="addquestionData" (ngSubmit)="onsubmit()">
+                                    
+                                </form>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <appFooter-component></appFooter-component>
+</div>

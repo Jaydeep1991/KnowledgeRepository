@@ -1,0 +1,6 @@
+.mat-raised-button {
+outline: none;
+  }
+  .card,.card-header{
+    border-top-left-radius: 18px;
+  }

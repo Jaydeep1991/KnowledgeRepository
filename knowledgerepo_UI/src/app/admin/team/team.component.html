@@ -1,0 +1,51 @@
+<div class="card m-3">
+        <app-error-alert [setMessage]="setMessage"></app-error-alert>
+        <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+    <h5 class="card-header">Create Team</h5>
+    <div class="card-body">
+        <form [formGroup]="createTeamData"  (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Company Name</label>
+                    <select pInputText formControlName="companyName" (change)="onChangeGetDepartment($event)" class="form-control" required>
+                            <option value="">--Select--</option>
+                        <option *ngFor="let company of companyNames" [value]="company.companyName">
+                            {{company.companyName}}</option>
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <label>Department Name</label>
+                    <select formControlName="departmentName" (change)="onChangeGetProject($event)" class="form-control" required>
+                            <option value="">--Select--</option>
+                        <option *ngFor="let department of departmentNames" [value]="department.departmentName">
+                            {{department.departmentName}}</option>
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <label>Project Name</label>
+                    <select formControlName="projectName" class="form-control" required>
+                            <option value="">--Select--</option>
+                        <option *ngFor="let project of projectNames" [value]="project.projectName">
+                            {{project.projectName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Team Name</label>
+                    <input type="text" pInputText formControlName="teamName" class="form-control" required>
+                </div>
+            </div>
+            <div class="text-center">
+                <button mat-raised-button color="primary" [disabled]="!createTeamData.valid" style="margin-right: 5px;" type="submit">
+                    <mat-icon>save</mat-icon>
+                    Create</button>
+                <button mat-raised-button color="warn" type="reset" >
+                    <mat-icon>clear</mat-icon>
+                    Cancel</button>
+                <div class="text-success" *ngIf="successMsg">{{status}} {{msg}} </div>
+                <div class="text-danger" *ngIf="errorMsg">{{status}} {{msg}}</div>
+            </div>
+        </form>
+    </div>
+</div>

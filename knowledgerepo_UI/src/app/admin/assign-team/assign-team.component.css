@@ -1,0 +1,36 @@
+.mat-raised-button{
+    outline: none;
+}
+.multiselect-dropdown[_ngcontent-kht-c17] .dropdown-btn[_ngcontent-kht-c17] {
+    display: inline-block;
+    border: 1px solid #adadad;
+    width: 100%;
+    padding: 5px 12px;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 1.52857143;
+    text-align: left;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border-radius: 4px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.6em + .75rem + 2px);
+    padding: 0 ;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.card,.card-header{
+    border-top-left-radius: 18px;
+  }

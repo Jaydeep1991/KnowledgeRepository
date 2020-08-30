@@ -1,0 +1,89 @@
+<!-- Header
+<app-headder></app-headder> -->
+
+<body class="my-body">
+    <div class="my-area">
+        <ol class="my-circles">
+            <li>doc</li>
+            <li>pdf</li>
+            <li>docx</li>
+            <li>png</li>
+            <li>jpeg</li>
+            <li>mp3</li>
+            <li>mp4</li>
+            <li>pptx</li>
+            <li>ppt</li>
+            <li>jpg</li>
+            <li>web</li>
+            <li>doc</li>
+            <li>pdf</li>
+            <li>docx</li>
+            <li>png</li>
+            <li>jpeg</li>
+            <li>mp3</li>
+            <li>mp4</li>
+            <li>pptx</li>
+            <li>ppt</li>
+            <li>jpg</li>
+            <li>web</li>
+            <li>pdf</li>
+        </ol>
+    </div>
+    <div class="my-loginbackground">
+        <div id="signup">
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                    <!-- Icon -->
+                    <div class="fadeIn first">
+                        <img src="assets/image/0.png" class="img-fluid" id="icon" alt="User Icon" height="100"
+                            width="180" />
+                        <h2 style="color:#969799;">Knowledge Repository</h2>
+
+                    </div>
+                    <br>
+                    <!-- Login Form -->
+
+                    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                        <app-error-alert [setMessage]="setMessage"></app-error-alert>
+                        <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+                        <input type="text" pInputText formControlName="userName" id="uName" class="fadeIn second"
+                            placeholder="User Name" required style="font-family: 'Courier New', Courier, monospace;">
+                        <div *ngIf="f.userName.errors && f.userName.touched" class="invalid">
+                            <div *ngIf="f.userName.errors.required">
+                                <alert type="danger" [dismissible]="true" >
+                                    User Name is required
+                                </alert>
+
+                            </div>
+                        </div>
+                        <input type="text" pInputText formControlName="eMail" id="login" class="fadeIn second"
+                            placeholder="User Email" required style="font-family: 'Courier New', Courier, monospace;">
+                        <div *ngIf="f.eMail.errors && f.eMail.touched" class="invalid">
+                            <div *ngIf="f.eMail.errors.required">
+                                <alert type="danger" [dismissible]="true">Email is required
+                                </alert>
+                            </div>
+                            <div *ngIf="f.eMail.errors.email">Email must be a valid email address</div>
+                        </div>
+                        <input type="text" pInputText formControlName="pHone" id="phone" class="fadeIn third"
+                            placeholder="MobileNumber"  style="font-family: 'Courier New', Courier, monospace;">
+                        <select pInputText formControlName="userRole" class="form-control"  required>
+                            <option value="" selected disabled>Select User Role</option>
+                            <option value="ROLE_USER">User</option>
+                        </select>
+                     
+                        <input type="submit" class="fadeIn fourth" value="Register"
+                            style="font-family: 'Courier New', Courier, monospace;">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Forgot Password -->
+       
+    </div>
+
+</body>
+
+<!-- Footer-->
+<appFooter-component></appFooter-component>

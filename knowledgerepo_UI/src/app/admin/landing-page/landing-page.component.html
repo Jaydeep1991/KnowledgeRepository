@@ -1,0 +1,78 @@
+<!-- Header 
+<app-headder></app-headder>
+-->
+
+<div class="topnav">
+    <!-- <i class="material-icons">list</i> -->
+    <!-- <i class="material-icons">dashboard</i> -->
+    <a href="/" class="admin">Admin DashBoard</a>
+    <div class="topnav-right">
+        <div class="btn btn-primary" (click)="SignUpComponent()">
+            <!-- <i class="material-icons">account_circle</i> -->
+            <a href="/#signup">signUp</a>
+        </div>
+        <div class="btn btn-primary" (click)="LogInBodyComponent()">
+            <!-- <i class="material-icons">account_circle</i> -->
+            <a href="/#login">Login</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 side_nav">
+        <div class="left">
+            <div class="item menu_items" (click)="toggle()">
+                <i class="material-icons"> work_outline</i>
+                <a>Client</a>
+            </div>
+            <div *ngIf="show">
+                <div class="item company_details" *ngFor="let company of companyNames">
+                    <p (click)="questionsOnclient(CName)" class="cur-point">{{ company.companyName }}<span #CName class="hide"> {{ company.companyId }} </span></p>
+                </div>
+            </div>
+            <div class="item menu_items" (click)="toggle1()">
+                <i class="material-icons">dns</i>
+                <a>Topics</a>
+            </div> 
+            <div *ngIf="show_topic">
+                <div class="item company_details" *ngFor="let topic of topicNames">
+                    {{ topic.topicName }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 box-styles">
+        <app-all-questions *ngIf="loadAllQuestionsCompnent"></app-all-questions>
+        <!-- <app-all-questions-client *ngIf="loadQuestionsComponent"></app-all-questions-client> -->
+        <div *ngIf="loadQuestionsComponent">
+        <div class="row">
+            <div class="search-hero form-group  col-12" >
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching ">
+            </div>
+            </div>
+            <div class="row">
+               <div class="col-xs-6 col-sm-12 col-md-6 col-lg-4 border-styles">
+                <h5 class="text-center">List of Questions</h5>
+                <div class="questions_list" *ngFor="let questions of questionsClientList | filter:searchText">
+                    <p class="link_style"><b>{{ questions.question }}</b></p>
+                    <p><b>Ans:</b>{{ questions.answer }}</p>
+                </div>
+                <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
+               </div>
+               <div class="col-xs-6 col-sm-12 col-md-6 col-lg-8 brd-style ">
+                <!-- <p class="link_style"><b>What is css? Explain how many types of css?</b></p>
+                <p><span class="company">Aroha/10-2-2020</span></p>
+                <p><b>Ans:</b>Css is cascading style sheet.Difference Between the 3 Types of CSS Styles: Inline, External and Internal. In this tutorial, you will learn the difference between the three types of CSS styles: inline, external, and internal.</p>
+                <p class="mar-top">please add comment on this question</p>
+                <textarea cols="90" rows="5" placeholder="write answer....."></textarea>
+                <div class="text-right">
+                    <button class="btn btn-primary mr-1">Comment</button>
+                  </div> -->
+               </div>
+           </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid">
+    <appFooter-component></appFooter-component>
+</div>

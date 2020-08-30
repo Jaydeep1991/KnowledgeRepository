@@ -1,0 +1,12 @@
+table{
+    border-color: black;
+}
+thead{
+    background-color: rgb(183, 183, 236);
+}
+.mat-raised-button{
+    outline: none;
+}
+.card,.card-header{
+    border-top-left-radius: 18px;
+  }

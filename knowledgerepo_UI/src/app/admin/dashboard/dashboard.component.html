@@ -1,0 +1,74 @@
+<div class="card-body" style="border-style: outset;">
+    <form [formGroup]="chartData" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col">
+                <label>Select Company</label>
+                <select formControlName="companyName" (change)="onChange($event)" class="form-control" required>
+                    <option value="">--Select--</option>
+                    <option *ngFor="let company of companyNames" [value]="company.companyName">
+                        {{company.companyName}}</option>
+                </select>
+            </div>
+            <div class="form-group col">
+                <label>Select Department</label>
+                <select formControlName="departmentName" (change)="onDepartment($event)" class="form-control" required>
+                    <option value="">--Select--</option>
+                    <option *ngFor="let department of departmentNames" [value]="department.departmentName">
+                        {{department.departmentName}}</option>
+                </select>
+            </div>
+            <div class="form-group col">
+                <label>Select Project</label>
+                <select formControlName="projectName" class="form-control" (change)="onClickProject($event)" required>
+                    <option value="">--Select--</option>
+                    <option *ngFor="let project of projectNames" [value]="project.projectName">
+                        {{project.projectName}}</option>
+                </select>
+            </div>
+            <!-- <div class="form-group col">
+                <label>Select Team</label>
+                <select formControlName="projectName" class="form-control" (change)="onClickTeam($event)" required>
+                    <option value="">--Select--</option>
+                    <option *ngFor="let project of projectNames" [value]="project.projectName">
+                        {{team.teamName}}</option>
+                </select>
+            </div>
+        -->
+            <button  mat-raised-button color="primary"class="btn-styles" (click)="onClickReset($event)" type="reset">
+                <mat-icon>restore</mat-icon>
+                Reset</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div style="display: block" style="border-style: outset;">
+            <h5 class="card-header">Content Tag</h5>
+            <canvas baseChart [datasets]="barChartDataType" [labels]="barChartLabelsType"
+                [options]="barChartOptionsType" [legend]="barChartLegendType" [chartType]="barChartTypeType"
+                [colors]="pieChartColor">
+            </canvas>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div style="display: block" style="border-style: outset;">
+            <h5 class="card-header">Media Type</h5>
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [legend]="barChartLegend" [chartType]="barChartType" [colors]="pieChartColor">
+            </canvas>
+        </div>
+        <br>
+    </div>
+</div>
