@@ -34,7 +34,7 @@ export class LandingPageNewComponent implements OnInit {
 
   constructor(private depServices:DepartmentService) { }
   editorStyle={
-    height:'150px',
+    height:'100px',
     backgroundColor:'white'
 
   }

@@ -47,7 +47,9 @@
             {{errorMessage}}
         </span> -->
         <div class="col-md-10" style="margin-top: 5px;">
-
+            <span class="error" *ngIf="error">
+                {{errorMessage}}
+            </span>
             <mat-card>
                 <mat-card-title>Top Questions</mat-card-title>
                 <div class="row">
