@@ -4,12 +4,12 @@
         <div class="col-md-10">
         </div>
         <div class="col-md-1">
-            <button mat-raised-button color="primary">
+            <button mat-raised-button color="primary" (click)="signUp()">
                 Sign Up
             </button>
         </div>
         <div class="col-md-1">
-            <button mat-raised-button color="primary">
+            <button mat-raised-button color="primary" (click)="signIn()">
                 Login
             </button>
         </div>
@@ -46,11 +46,11 @@
         <!-- <span class="error" *ngIf="error">
             {{errorMessage}}
         </span> -->
-        <div class="col-md-10" style="margin-top: 5px;">
+        <div class="col-md-10" style="margin-top: 5px;" (click)="closeErrorFromDiv()">
             <span class="error" *ngIf="error">
                 {{errorMessage}}
             </span>
-            <mat-card>
+            <mat-card (click)="closeErrorFromCard()">
                 <mat-card-title>Top Questions</mat-card-title>
                 <div class="row">
                     <div class="col-md-10"></div>
@@ -71,15 +71,17 @@
                             <mat-card-content>
                                 <form [formGroup]="addquestionData" (ngSubmit)="onsubmit()">
                                     <quill-editor [placeholder]="placeholder " formControlName="editor"
-                                    [modules]="config" [styles]="editorStyle" (onContentChanged)="maxlength($event)">
+                                        [modules]="config" [styles]="editorStyle"
+                                        (onContentChanged)="maxlength($event)">
                                     </quill-editor>
-                                    <button mat-raised-button color="primary" type="submit">  
+                                    <button mat-raised-button color="primary" type="submit">
                                         <mat-icon>save</mat-icon>
                                         Save
-                                    </button>                                  
-                                    <button mat-raised-button color="warn" type="reset" style="margin-left: 5px;">                                        
+                                    </button>
+                                    <button mat-raised-button color="warn" type="reset" style="margin-left: 5px;">
                                         <mat-icon>clear</mat-icon>
-                                        Cancel</button>    
+                                        Cancel
+                                    </button>
                                 </form>
                             </mat-card-content>
                         </mat-card>

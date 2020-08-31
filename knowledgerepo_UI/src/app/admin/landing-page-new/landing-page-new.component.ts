@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from 'src/app/module-service/department.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 export class Company{
@@ -32,7 +33,7 @@ export class LandingPageNewComponent implements OnInit {
   public addquestionData:FormGroup;
   public placeholder:string='Maximum 100 words';
 
-  constructor(private depServices:DepartmentService) { }
+  constructor(private depServices:DepartmentService,private router:Router) { }
   editorStyle={
     height:'100px',
     backgroundColor:'white'
@@ -83,6 +84,13 @@ export class LandingPageNewComponent implements OnInit {
     });
   }
 
+  closeErrorFromDiv(){
+    this.error=false;
+  }
+  closeErrorFromCard(){
+    this.error=false;
+  }
+
   maxlength(e){
     console.log(e);
     if(e.editor.getLength() > 100){
@@ -117,4 +125,11 @@ export class LandingPageNewComponent implements OnInit {
     
   }
 
+  signIn(){
+    this.router.navigate(['/login']);
+  }
+
+  signUp(){
+    this.router.navigate(['/signup']);
+  }
 }
