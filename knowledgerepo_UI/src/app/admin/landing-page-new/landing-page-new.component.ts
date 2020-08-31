@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from 'src/app/module-service/department.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/storage.service';
 
@@ -32,11 +32,12 @@ export class LandingPageNewComponent implements OnInit {
   public topicId:number;
   public addQues:boolean=false;
   public addquestionData:FormGroup;
-  public placeholder:string='Maximum 100 words';
+  public placeholder:string='Maximum 200 words';
   public isLoggedIn:boolean=false;
   public userRole:string;
 
-  constructor(private depServices:DepartmentService,private router:Router,private _storage:StorageService) { }
+  constructor(private depServices:DepartmentService,private router:Router,private _storage:StorageService
+    ,private formBuilder:FormBuilder) { }
   editorStyle={
     height:'100px',
     backgroundColor:'white'
@@ -82,12 +83,24 @@ export class LandingPageNewComponent implements OnInit {
         this.error=true;
       }
     );
-    this.addquestionData=new FormGroup({
-      editor:new FormControl('')
+    // this.addquestionData=new FormGroup({
+    //   editor:new FormControl('',[Validators.required,Validators.maxLength(150)])
+    // });
+    this.addquestionData=this.formBuilder.group({
+      editor:['',[Validators.required,Validators.maxLength(200)]]
     });
     this.isLoggedIn=this._storage.getSession('isAuthenticated');
     this.userRole=this._storage.getSession('userRole');
   }
+
+  dashboard(){
+    if(this._storage.getSession('userRole')==='Admin'){
+      this.router.navigate(['/admin']);
+    }else{
+      this.router.navigate(['/user']);
+    }
+  }
+
   logout(){
     sessionStorage.clear();
     this.isLoggedIn=false;
@@ -101,8 +114,8 @@ export class LandingPageNewComponent implements OnInit {
 
   maxlength(e){
 
-    if(e.editor.getLength() > 100){
-      e.editor.deleteText(100,e.editor.getLength());
+    if(e.editor.getLength() > 200){
+      e.editor.deleteText(200,e.editor.getLength());
     }
   }
 

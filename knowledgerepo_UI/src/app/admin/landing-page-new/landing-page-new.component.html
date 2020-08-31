@@ -1,10 +1,9 @@
 <div class="component">
     <div class="row"></div>
     <div class="row secondRow">
-        <div class="col-md-4">
-            <!-- <a *ngIf="isLoggedIn">Admin DashBoard</a> -->
+        <div class="col-md-2">           
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-8"></div>
         <div class="col-md-1">
             <button mat-raised-button color="primary" (click)="signUp()" *ngIf="!isLoggedIn">
                 Sign Up
@@ -15,12 +14,19 @@
                 Login
             </button>
             <button mat-raised-button color="warn"  *ngIf="isLoggedIn" (click)="logout()" id="logout">
-                SignOut
+                Logout
             </button>
         </div>
     </div>
     <div class="row">
         <div class="col-md-2 sidenav">
+            <div class="side-left" *ngIf="isLoggedIn" (click)="dashboard()">
+                <mat-icon class="mat-side-icons">dashboard</mat-icon>
+                <span>DashBoard</span>
+                <br>
+            </div>
+            <div id="DashBoard" *ngIf="isLoggedIn">
+            </div>
             <div class="side-left" (click)="showClient()">
                 <mat-icon class="mat-side-icons">work</mat-icon>
                 <span>Client</span>
@@ -47,7 +53,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-md-10" style="margin-top: 5px;" (click)="closeErrorFromDiv()">
             <span class="error" *ngIf="error">
                 {{errorMessage}}
@@ -76,7 +82,8 @@
                                         [modules]="config" [styles]="editorStyle"
                                         (onContentChanged)="maxlength($event)">
                                     </quill-editor>
-                                    <button mat-raised-button color="primary" type="submit">
+                                    <button mat-raised-button color="primary" type="submit" 
+                                    [disabled]="!addquestionData.valid">
                                         <mat-icon>save</mat-icon>
                                         Save
                                     </button>

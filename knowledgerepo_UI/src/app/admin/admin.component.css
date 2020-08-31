@@ -20,6 +20,12 @@
     
 }
 
+#backImage{
+    height: 55px;
+    width: 55px;
+    cursor: pointer;
+}
+
 .right {
     background: #fff;
     width: 350px;

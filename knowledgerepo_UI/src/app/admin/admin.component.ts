@@ -25,7 +25,7 @@ export class AdminComponent implements OnInit {
   private loadQuestionsComponent: boolean = false;
   private userProfileComponent:boolean=false;
 
-  constructor(private _storage: StorageService) { }
+  constructor(private _storage: StorageService,private route:Router) { }
   userName: String;
   userRole: String;
   userCompany: string;
@@ -163,6 +163,9 @@ export class AdminComponent implements OnInit {
     this.loadAssignTeamComponent = false;
     this.loadQuestionsComponent = false;
     this.userProfileComponent=true;
+  }
+  backImage(){
+    this.route.navigate(['/']);
   }
   AssignTeamComponent() {
     this.loadCompanyComponent = false;
