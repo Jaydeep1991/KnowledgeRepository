@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from 'src/app/module-service/department.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/shared/storage.service';
 
 
 export class Company{
@@ -32,8 +33,9 @@ export class LandingPageNewComponent implements OnInit {
   public addQues:boolean=false;
   public addquestionData:FormGroup;
   public placeholder:string='Maximum 100 words';
+  public isLoggedIn:boolean=false;
 
-  constructor(private depServices:DepartmentService,private router:Router) { }
+  constructor(private depServices:DepartmentService,private router:Router,private _storage:StorageService) { }
   editorStyle={
     height:'100px',
     backgroundColor:'white'
@@ -82,6 +84,7 @@ export class LandingPageNewComponent implements OnInit {
     this.addquestionData=new FormGroup({
       editor:new FormControl('')
     });
+    this.isLoggedIn=this._storage.getSession('isAuthenticated');
   }
 
   closeErrorFromDiv(){
@@ -92,7 +95,7 @@ export class LandingPageNewComponent implements OnInit {
   }
 
   maxlength(e){
-    console.log(e);
+
     if(e.editor.getLength() > 100){
       e.editor.deleteText(100,e.editor.getLength());
     }
@@ -109,16 +112,21 @@ export class LandingPageNewComponent implements OnInit {
   }
 
   getComapnyId(id){
-    console.log('company id ',id);
+
     this.companyId=id;
   }
 
   getTopicId(id){
-    console.log('topic id ',id);
+
     this.topicId=id;
   }
   addQuestion(){
-    this.addQues=!this.addQues;
+    let isUserLoggedIn=this._storage.getSession('isAuthenticated');
+    if(isUserLoggedIn){
+      this.addQues=!this.addQues;
+    }else{
+      this.router.navigate(['/login']);
+    }  
   }
 
   onsubmit(){
