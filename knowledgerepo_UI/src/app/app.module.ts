@@ -24,7 +24,7 @@ import { ShowComponent } from './user/show/show.component';
 import { UploadComponent } from './user/upload/upload.component';
 import { HeaderLogInComponent } from './shared/header-log-in/header-log-in.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {QuillModule} from 'ngx-quill';
 import {MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule } from '@angular/material';
 import { ErrorAlertComponent } from '../app/shared/error-alert/error-alert.component';
 import { MsgAlertComponent } from './shared/msg-alert/msg-alert.component';
@@ -125,7 +125,8 @@ import { LandingPageNewComponent } from './admin/landing-page-new/landing-page-n
     MatPaginatorModule,
     Ng2SearchPipeModule,
     NgMultiSelectDropDownModule.forRoot(),
-    MaterialModule
+    MaterialModule,
+    QuillModule.forRoot()
     
   ],
   exports: [
