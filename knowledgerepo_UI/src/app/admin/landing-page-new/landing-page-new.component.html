@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-md-2 sidenav">
             <div class="side-left" (click)="showClient()">
-                <mat-icon>work</mat-icon>
+                <mat-icon class="mat-side-icons">work</mat-icon>
                 <span>Client</span>
                 <br>
             </div>
@@ -30,7 +30,7 @@
             </div>
             <br>
             <div class="side-left" (click)="showTopics()">
-                <mat-icon>dns</mat-icon>
+                <mat-icon class="mat-side-icons">dns</mat-icon>
                 <span>Topics</span>
                 <br>
             </div>
@@ -68,7 +68,16 @@
                             </mat-card-subtitle>
                             <mat-card-content>
                                 <form [formGroup]="addquestionData" (ngSubmit)="onsubmit()">
-                                    <quill-editor></quill-editor>
+                                    <quill-editor [placeholder]="placeholder " formControlName="editor"
+                                    [modules]="config" [styles]="editorStyle" (onContentChanged)="maxlength($event)">
+                                    </quill-editor>
+                                    <button mat-raised-button color="primary" type="submit">  
+                                        <mat-icon>save</mat-icon>
+                                        Save
+                                    </button>                                  
+                                    <button mat-raised-button color="warn" type="reset" style="margin-left: 5px;">                                        
+                                        <mat-icon>clear</mat-icon>
+                                        Cancel</button>    
                                 </form>
                             </mat-card-content>
                         </mat-card>

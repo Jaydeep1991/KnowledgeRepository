@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from 'src/app/module-service/department.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 
 export class Company{
@@ -30,8 +30,34 @@ export class LandingPageNewComponent implements OnInit {
   public topicId:number;
   public addQues:boolean=false;
   public addquestionData:FormGroup;
+  public placeholder:string='Maximum 100 words';
 
   constructor(private depServices:DepartmentService) { }
+  editorStyle={
+    height:'150px',
+    backgroundColor:'white'
+
+  }
+
+  config={
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],       
+      ['blockquote', 'code-block'],
+  
+      [{ 'header': 1 }, { 'header': 2 }],               
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],     
+      [{ 'indent': '-1'}, { 'indent': '+1' }],         
+      [{ 'direction': 'rtl' }],                        
+  
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+  
+      [{ 'color': [] }, { 'background': [] }],         
+      [{ 'font': [] }],
+      [{ 'align': [] }]
+    ]   
+  }
 
   ngOnInit() {
     this.depServices.getCompanyName().subscribe(
@@ -52,7 +78,18 @@ export class LandingPageNewComponent implements OnInit {
         this.error=true;
       }
     );
+    this.addquestionData=new FormGroup({
+      editor:new FormControl('')
+    });
   }
+
+  maxlength(e){
+    console.log(e);
+    if(e.editor.getLength() > 100){
+      e.editor.deleteText(100,e.editor.getLength());
+    }
+  }
+
   showClient(){
     this.showCompany=!this.showCompany;
     this.showListTopic=false;

@@ -26,7 +26,16 @@
 a{
     cursor: pointer;
 }
-.material-icons{
+/* .material-icons{
+    margin: 15px;
+    width: 20px;
+    color: #fff;
+    font-size: 30px;
+    vertical-align: middle !important;
+    margin-bottom: 15px;
+    cursor: pointer;
+} */
+.mat-side-icons{
     margin: 15px;
     width: 20px;
     color: #fff;
