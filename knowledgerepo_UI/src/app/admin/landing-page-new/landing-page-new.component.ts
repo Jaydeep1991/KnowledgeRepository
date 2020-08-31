@@ -34,6 +34,7 @@ export class LandingPageNewComponent implements OnInit {
   public addquestionData:FormGroup;
   public placeholder:string='Maximum 100 words';
   public isLoggedIn:boolean=false;
+  public userRole:string;
 
   constructor(private depServices:DepartmentService,private router:Router,private _storage:StorageService) { }
   editorStyle={
@@ -85,8 +86,12 @@ export class LandingPageNewComponent implements OnInit {
       editor:new FormControl('')
     });
     this.isLoggedIn=this._storage.getSession('isAuthenticated');
+    this.userRole=this._storage.getSession('userRole');
   }
-
+  logout(){
+    sessionStorage.clear();
+    this.isLoggedIn=false;
+  }
   closeErrorFromDiv(){
     this.error=false;
   }

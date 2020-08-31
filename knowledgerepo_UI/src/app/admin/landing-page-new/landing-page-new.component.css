@@ -69,3 +69,8 @@ mat-card-title{
 ul {
     list-style-type: square;
 }
+#logout{
+    margin-top: 9px;
+    outline: none;
+    margin-left: -21px;
+}

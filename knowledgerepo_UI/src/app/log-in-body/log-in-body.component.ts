@@ -71,13 +71,13 @@ export class LogInBodyComponent implements OnInit {
           this._storage.setSession('isAuthenticated', true);
           this._storage.setSession('eMail', userEmail);
           this._storage.setSession('userRole', "Admin");
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/']);
         }
         if (resp.userRole.toUpperCase() == 'ROLE_USER' || resp.userRole.toUpperCase() == 'ROLE_MANAGER' || resp.userRole == 'ROLE_TEAMLEAD') {
           this._storage.setSession("isAuthenticated", true);
           this._storage.setSession('eMail', userEmail);
           this._storage.setSession('userRole',userRole);
-          this.router.navigate(['/user']);
+          this.router.navigate(['/']);
         } else {
           this.setMessage = { message: resp.errorMessage, error: true };
         }
