@@ -51,6 +51,7 @@ import { MaterialModule } from './material/material.module';
 import { UserProfileComponent } from './admin/user-profile/user-profile.component';
 import { LandingPageNewComponent } from './admin/landing-page-new/landing-page-new.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
