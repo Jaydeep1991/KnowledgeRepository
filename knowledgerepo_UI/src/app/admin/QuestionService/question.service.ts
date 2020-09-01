@@ -11,6 +11,6 @@ export class QuestionService {
   constructor(private http:HttpClient) { }
 
   getAllQuestion():Observable<any>{
-      return this.http.get(this.baseUrl+"/api/question/showAllQuestion");
+      return this.http.get(this.baseUrl+"/api/question/findAllQuestionAndAnswer");
   }
 }

@@ -17,7 +17,7 @@ export class Topic{
 
 export class ShowQuestion{
   constructor(public questionId:number,public question:string,public askedBy:string,public clientName:string,
-    public questionDate:string){}
+    public questionDate:string,public answer:string,public answerdBy:string,public answeredDate:string){}
 }
 
 @Component({
@@ -47,6 +47,7 @@ export class LandingPageNewComponent implements OnInit {
 
   constructor(private depServices:DepartmentService,private router:Router,private _storage:StorageService
     ,private formBuilder:FormBuilder,private questionService:QuestionService) { }
+
   editorStyle={
     height:'100px',
     backgroundColor:'white'
