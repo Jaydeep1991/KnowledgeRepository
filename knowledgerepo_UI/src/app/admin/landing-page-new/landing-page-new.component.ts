@@ -3,6 +3,8 @@ import { DepartmentService } from 'src/app/module-service/department.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/storage.service';
+import { QuestionService } from '../QuestionService/question.service';
+
 
 
 export class Company{
@@ -11,6 +13,11 @@ export class Company{
 
 export class Topic{
   constructor(public topicsId:number,public topicName:string){}
+}
+
+export class ShowQuestion{
+  constructor(public questionId:number,public question:string,public askedBy:string,public clientName:string,
+    public questionDate:string){}
 }
 
 @Component({
@@ -36,9 +43,10 @@ export class LandingPageNewComponent implements OnInit {
   public isLoggedIn:boolean=false;
   public userRole:string;
   public question:string;
+  public showAllQuestionList:Array<ShowQuestion>;
 
   constructor(private depServices:DepartmentService,private router:Router,private _storage:StorageService
-    ,private formBuilder:FormBuilder) { }
+    ,private formBuilder:FormBuilder,private questionService:QuestionService) { }
   editorStyle={
     height:'100px',
     backgroundColor:'white'
@@ -66,6 +74,16 @@ export class LandingPageNewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.questionService.getAllQuestion().subscribe(
+      resp=>{
+        this.showAllQuestionList=resp;
+        console.log(this.showAllQuestionList);
+      },
+      err=>{
+        this.errorMessage="'Server Error /Server Unreachable!";
+        this.error=true; 
+      }
+    );
     this.depServices.getCompanyName().subscribe(
       resp=>{
         this.listCompany=resp;

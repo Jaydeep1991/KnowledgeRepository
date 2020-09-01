@@ -96,6 +96,17 @@
                         </mat-card>
                     </div>
                 </div>
+                <div class="row" style="height: 10px;">
+                </div>
+                <div class="row" >
+                    <div class="col-md-10">
+                        <mat-card *ngFor="let q of showAllQuestionList">
+                            <mat-card-content >
+                              <span>Question:- </span>  {{q.question}}
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
             </mat-card>
         </div>
     </div>
