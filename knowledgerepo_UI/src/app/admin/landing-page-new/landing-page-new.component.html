@@ -1,7 +1,7 @@
 <div class="component">
     <div class="row"></div>
     <div class="row secondRow">
-        <div class="col-md-2">           
+        <div class="col-md-2">
         </div>
         <div class="col-md-8"></div>
         <div class="col-md-1">
@@ -13,7 +13,7 @@
             <button mat-raised-button color="primary" (click)="signIn()" *ngIf="!isLoggedIn">
                 Login
             </button>
-            <button mat-raised-button color="warn"  *ngIf="isLoggedIn" (click)="logout()" id="logout">
+            <button mat-raised-button color="warn" *ngIf="isLoggedIn" (click)="logout()" id="logout">
                 Logout
             </button>
         </div>
@@ -82,8 +82,8 @@
                                         [modules]="config" [styles]="editorStyle"
                                         (onContentChanged)="maxlength($event)">
                                     </quill-editor>
-                                    <button mat-raised-button color="primary" type="submit" 
-                                    [disabled]="!addquestionData.valid">
+                                    <button mat-raised-button color="primary" type="submit"
+                                        [disabled]="!addquestionData.valid">
                                         <mat-icon>save</mat-icon>
                                         Save
                                     </button>
@@ -98,11 +98,28 @@
                 </div>
                 <div class="row" style="height: 10px;">
                 </div>
-                <div class="row" >
+                <div class="row">
                     <div class="col-md-10">
-                        <mat-card *ngFor="let q of showAllQuestionList">
-                            <mat-card-content >
-                              <span>Question:- </span>  {{q.question}}
+                        <mat-card *ngFor="let q of showAllQuestionList" id="mat-card-style">
+                            <mat-card-content>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <p [innerHTML]="q.question"></p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span>Asked By:</span>
+                                        <p>{{q.askedBy}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-2">
+                                        {{q.questionDate|date}}
+                                    </div>
+                                </div>
+
                             </mat-card-content>
                         </mat-card>
                     </div>

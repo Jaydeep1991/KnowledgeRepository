@@ -14,7 +14,7 @@
     width: 250px;
     -webkit-transition: width .5s;
     transition: width .5s;
-    height: 100vh !important;
+    height: auto !important;
     color: #f2f2f2;
     text-align: center;
     text-decoration: none;
@@ -35,6 +35,11 @@ a{
     margin-bottom: 15px;
     cursor: pointer;
 } */
+
+#mat-card-style{
+    margin-bottom: 15px;
+    border: 0.1px solid #337ab7;
+}
 
 .mat-side-icons{
     margin: 15px;
