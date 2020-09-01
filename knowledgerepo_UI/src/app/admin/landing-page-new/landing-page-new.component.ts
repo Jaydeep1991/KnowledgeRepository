@@ -35,6 +35,7 @@ export class LandingPageNewComponent implements OnInit {
   public placeholder:string='Maximum 200 words';
   public isLoggedIn:boolean=false;
   public userRole:string;
+  public question:string;
 
   constructor(private depServices:DepartmentService,private router:Router,private _storage:StorageService
     ,private formBuilder:FormBuilder) { }
@@ -83,9 +84,6 @@ export class LandingPageNewComponent implements OnInit {
         this.error=true;
       }
     );
-    // this.addquestionData=new FormGroup({
-    //   editor:new FormControl('',[Validators.required,Validators.maxLength(150)])
-    // });
     this.addquestionData=this.formBuilder.group({
       editor:['',[Validators.required,Validators.maxLength(200)]]
     });
@@ -148,6 +146,7 @@ export class LandingPageNewComponent implements OnInit {
   }
 
   onsubmit(){
+    this.question=this.addquestionData.value;
     
   }
 
