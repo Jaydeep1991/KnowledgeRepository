@@ -14,7 +14,7 @@
     width: 250px;
     -webkit-transition: width .5s;
     transition: width .5s;
-    height: 150vh !important;
+    min-height: 120vh !important;
     color: #f2f2f2;
     text-align: center;
     text-decoration: none;

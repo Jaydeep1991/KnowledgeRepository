@@ -6,7 +6,6 @@ import { StorageService } from 'src/app/shared/storage.service';
 import { QuestionService } from '../QuestionService/question.service';
 
 
-
 export class Company{
   constructor(public companyId:number,public companyName:string){}
 }
