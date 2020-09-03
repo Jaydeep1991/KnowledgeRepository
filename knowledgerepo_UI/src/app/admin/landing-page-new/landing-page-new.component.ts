@@ -212,19 +212,17 @@ close(){
   }
 
   onAnswerSubmit(id) {
-    console.log('------Question Id-----',id);
     let tempAns=this.answerData.get('answereditor').value;
     let tempDiv=document.createElement("div");
     tempDiv.innerHTML=tempAns;
     let ans=tempDiv.innerText;
     let email=this._storage.getSession('eMail');
     let output=new saveAnswer(id,ans,email);
-    console.log(output);
     this.questionService.saveQuestion(output).subscribe(
       resp=>{
         this.saveAnserRep=resp;
         if(this.saveAnserRep.status==='Success'){
-          this.setMessage = { message: "Answer saved Successfully", msg: true };
+          this.setMessage = { message: this.saveAnserRep.msg, msg: true };
                    
         }
         this.questionService.getAllQuestion().subscribe(
@@ -233,7 +231,7 @@ close(){
           }
         );
       },err=>{
-        this.setMessage = { message: "Error Saving Answer", error: true };
+        this.setMessage = { message: this.saveAnserRep.msg, error: true };
       }
     );
   }

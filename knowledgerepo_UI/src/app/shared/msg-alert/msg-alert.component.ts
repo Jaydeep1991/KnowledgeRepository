@@ -21,7 +21,7 @@ export class MsgAlertComponent implements OnInit {
      setTimeout(() => {
       this.setMessage.message='';
       this.setMessage.msg=false;
-     }, 7000);
+     }, 3000);
     } 
   }
 }

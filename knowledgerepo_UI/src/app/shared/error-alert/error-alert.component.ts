@@ -21,7 +21,7 @@ export class ErrorAlertComponent implements OnInit {
      setTimeout(() => {
       this.setMessage.message='';
       this.setMessage.error=false;
-     }, 7000);
+     }, 3000);
     } 
   }
 
