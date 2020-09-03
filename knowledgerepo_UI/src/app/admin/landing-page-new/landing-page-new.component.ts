@@ -46,6 +46,7 @@ export class LandingPageNewComponent implements OnInit {
   public answerData: FormGroup;
   public answer: any = false;
   public closediv:boolean=false;
+  public openAnswer:boolean=false;
 
 
   constructor(private depServices: DepartmentService, private router: Router, private _storage: StorageService
@@ -171,10 +172,19 @@ close(){
 
     this.topicId = id;
   }
-  addQuestion() {
+  checkPermission() {
     let isUserLoggedIn = this._storage.getSession('isAuthenticated');
     if (isUserLoggedIn) {
       this.addQues = !this.addQues;
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  checkPermission1() {
+    let isUserLoggedIn = this._storage.getSession('isAuthenticated');
+    if (isUserLoggedIn) {
+      this.openAnswer = !this.openAnswer;
     } else {
       this.router.navigate(['/login']);
     }

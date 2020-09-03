@@ -64,7 +64,7 @@
                     <div class="col-md-10"></div>
                     <div class="col-md-2">
                         <mat-card-actions>
-                            <button mat-raised-button color="accent" (click)="addQuestion()">Ask Question</button>
+                            <button mat-raised-button color="accent" (click)="checkPermission()">Ask Question</button>
                         </mat-card-actions>
                     </div>
                 </div>
@@ -129,35 +129,38 @@
                                     </div>
                                     <div class="col-md-2">
                                         <button mat-raised-button color="primary" (click)="close()"
-                                            (click)="giveAnswer(k)">Answer</button>
+                                            (click)="giveAnswer(k)" (click)="checkPermission1()">Answer</button>
                                     </div>
                                 </div>
-                                <div *ngIf="closediv"> 
-                                    <div class="row" *ngIf="answer == k">
-                                        <div class="col-md-10">
-                                            <form [formGroup]="answerData" (ngSubmit)="onAnswerSubmit()">
-                                                <quill-editor [modules]="config" [styles]="editorStyle"
-                                                    (onContentChanged)="maxlength($event)"
-                                                    formControlName="answereditor" [placeholder]="placeholder">
-                                                </quill-editor>
-                                                <button mat-raised-button color="primary" type="submit">
-                                                    <mat-icon>save</mat-icon>
-                                                    Save
-                                                </button>
-                                                <button mat-raised-button color="warn" type="reset"
-                                                    style="margin-left: 5px;">
-                                                    <mat-icon>clear</mat-icon>
-                                                    Cancel
-                                                </button>
-                                            </form>
+                                <div *ngIf="openAnswer">
+                                    <div *ngIf="closediv">
+                                        <div class="row" *ngIf="answer == k">
+                                            <div class="col-md-10">
+                                                <form [formGroup]="answerData" (ngSubmit)="onAnswerSubmit()">
+                                                    <quill-editor [modules]="config" [styles]="editorStyle"
+                                                        (onContentChanged)="maxlength($event)"
+                                                        formControlName="answereditor" [placeholder]="placeholder">
+                                                    </quill-editor>
+                                                    <button mat-raised-button color="primary" type="submit"
+                                                        [disabled]="!answerData.valid">
+                                                        <mat-icon>save</mat-icon>
+                                                        Save
+                                                    </button>
+                                                    <button mat-raised-button color="warn" type="reset"
+                                                        style="margin-left: 5px;">
+                                                        <mat-icon>clear</mat-icon>
+                                                        Cancel
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row" style="height: 5px;"></div>
                                 <div class="row">
                                     <div class="col-md-10">
-                                     <span>Answer:</span>   
-                                     {{q.answer}}
+                                        <span>Answer:</span>
+                                        {{q.answer}}
                                     </div>
                                     <div class="col-md-2">
                                         <span>Answered By:</span>
