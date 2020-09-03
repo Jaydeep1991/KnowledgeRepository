@@ -44,7 +44,8 @@ export class LandingPageNewComponent implements OnInit {
   public question: string;
   public showAllQuestionList: Array<ShowQuestion>;
   public answerData: FormGroup;
-  public answer: boolean = false;
+  public answer: any = false;
+  public closediv:boolean=false;
 
 
   constructor(private depServices: DepartmentService, private router: Router, private _storage: StorageService
@@ -151,9 +152,15 @@ export class LandingPageNewComponent implements OnInit {
     this.showListTopic = !this.showListTopic;
     this.showCompany = false;
   }
-  giveAnswer() {
-    this.answer = !this.answer;
+  giveAnswer(k) {
+    this.answer=k;
+    // this.answer = !this.answer;
   }
+
+close(){
+  this.closediv=!this.closediv;
+}  
+
 
   getComapnyId(id) {
 
