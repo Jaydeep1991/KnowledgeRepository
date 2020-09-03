@@ -101,6 +101,10 @@
                 <div class="row">
                     <div class="col-md-10">
                         <mat-card *ngFor="let q of showAllQuestionList;let k=index" id="mat-card-style">
+                            <mat-card-subtitle *ngIf="answer == k">
+                                <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+                                <app-error-alert [setMessage]="setMessage"></app-error-alert>
+                            </mat-card-subtitle>
                             <mat-card-content>
                                 <div class="row">
                                     <div class="col-md-10">

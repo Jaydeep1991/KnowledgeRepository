@@ -19,6 +19,14 @@ export class ShowQuestion {
     public questionDate: string, public answer: string, public answerdBy: string, public answeredDate: string) { }
 }
 
+export class saveAnswer{
+  constructor(public questionId:number,public answer:string,public emailUser:string){}
+}
+
+export class saveAnswerResponse{
+  constructor(public msg:string,public status:string){}
+}
+
 @Component({
   selector: 'app-landing-page-new',
   templateUrl: './landing-page-new.component.html',
@@ -47,6 +55,13 @@ export class LandingPageNewComponent implements OnInit {
   public answer: any = false;
   public closediv:boolean=false;
   public openAnswer:boolean=false;
+  public saveAnswer=new saveAnswer(0,'','');
+  public saveAnserRep:saveAnswerResponse;
+  setMessage: any = {};
+  msg: String; status: String;
+
+  
+  
 
 
   constructor(private depServices: DepartmentService, private router: Router, private _storage: StorageService
@@ -198,6 +213,29 @@ close(){
 
   onAnswerSubmit(id) {
     console.log('------Question Id-----',id);
+    let tempAns=this.answerData.get('answereditor').value;
+    let tempDiv=document.createElement("div");
+    tempDiv.innerHTML=tempAns;
+    let ans=tempDiv.innerText;
+    let email=this._storage.getSession('eMail');
+    let output=new saveAnswer(id,ans,email);
+    console.log(output);
+    this.questionService.saveQuestion(output).subscribe(
+      resp=>{
+        this.saveAnserRep=resp;
+        if(this.saveAnserRep.status==='Success'){
+          this.setMessage = { message: "Answer saved Successfully", msg: true };
+                   
+        }
+        this.questionService.getAllQuestion().subscribe(
+          resp => {
+            this.showAllQuestionList = resp;
+          }
+        );
+      },err=>{
+        this.setMessage = { message: "Error Saving Answer", error: true };
+      }
+    );
   }
 
   signIn() {

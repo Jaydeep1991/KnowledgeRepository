@@ -13,4 +13,8 @@ export class QuestionService {
   getAllQuestion():Observable<any>{
       return this.http.get(this.baseUrl+"/api/question/findAllQuestionAndAnswer");
   }
+
+  saveQuestion(data):Observable<any>{
+    return this.http.post(this.baseUrl+"/api/question/addAnswer",data);
+  }
 }
