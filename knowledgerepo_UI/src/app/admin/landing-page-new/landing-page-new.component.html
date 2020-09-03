@@ -119,10 +119,36 @@
                                         {{q.questionDate|date}}
                                     </div>
                                 </div>
-                                <div>
-                                    
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <hr>
+                                    </div>
                                 </div>
-
+                                <div class="row">
+                                    <div class="col-md-10">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-raised-button color="primary" (click)="giveAnswer()">Answer</button>
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="answer">
+                                    <div class="col-md-10">
+                                        <form [formGroup]="answerData" (ngSubmit)="onAnswerSubmit()">
+                                            <quill-editor  [modules]="config" [styles]="editorStyle"
+                                            (onContentChanged)="maxlength($event)" formControlName="answereditor"
+                                            [placeholder]="placeholder">
+                                        </quill-editor>
+                                        <button mat-raised-button color="primary" type="submit">
+                                            <mat-icon>save</mat-icon>
+                                            Save
+                                        </button>
+                                        <button mat-raised-button color="warn" type="reset" style="margin-left: 5px;">
+                                            <mat-icon>clear</mat-icon>
+                                            Cancel
+                                        </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </mat-card-content>
                         </mat-card>
                     </div>
