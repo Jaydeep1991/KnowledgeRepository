@@ -136,7 +136,7 @@
                                     <div *ngIf="closediv">
                                         <div class="row" *ngIf="answer == k">
                                             <div class="col-md-10">
-                                                <form [formGroup]="answerData" (ngSubmit)="onAnswerSubmit()">
+                                                <form [formGroup]="answerData" (ngSubmit)="onAnswerSubmit(q.questionId)">
                                                     <quill-editor [modules]="config" [styles]="editorStyle"
                                                         (onContentChanged)="maxlength($event)"
                                                         formControlName="answereditor" [placeholder]="placeholder">
@@ -159,11 +159,11 @@
                                 <div class="row" style="height: 5px;"></div>
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <span>Answer:</span>
-                                        {{q.answer}}
+                                        <span *ngIf="q.answer!=null">Answer:</span>
+                                        <p [innerHTML]="q.answer"></p>
                                     </div>
                                     <div class="col-md-2">
-                                        <span>Answered By:</span>
+                                        <span *ngIf="q.answerdBy!=null">Answered By:</span>
                                         <p>{{q.answerdBy}}</p>
                                     </div>
                                 </div>

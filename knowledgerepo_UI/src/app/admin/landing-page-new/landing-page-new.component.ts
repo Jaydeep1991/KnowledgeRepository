@@ -155,6 +155,7 @@ export class LandingPageNewComponent implements OnInit {
   }
   giveAnswer(k) {
     this.answer=k;
+    this.answerData.controls['answereditor'].setValue('');
     // this.answer = !this.answer;
   }
 
@@ -195,8 +196,8 @@ close(){
 
   }
 
-  onAnswerSubmit() {
-
+  onAnswerSubmit(id) {
+    console.log('------Question Id-----',id);
   }
 
   signIn() {
