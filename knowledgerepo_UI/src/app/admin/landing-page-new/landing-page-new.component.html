@@ -153,6 +153,25 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row" style="height: 5px;"></div>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                     <span>Answer:</span>   
+                                     {{q.answer}}
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span>Answered By:</span>
+                                        <p>{{q.answerdBy}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-2">
+                                        {{q.answeredDate|date}}
+                                    </div>
+                                </div>
                             </mat-card-content>
                         </mat-card>
                     </div>
