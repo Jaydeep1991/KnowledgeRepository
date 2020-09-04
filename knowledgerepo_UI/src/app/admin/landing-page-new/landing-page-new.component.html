@@ -46,7 +46,7 @@
                 <br>
             </div>
             <div *ngIf="showListTopic">
-                <div *ngFor="let topic of listTopic" (click)="getTopicId(topic.topicsId)">
+                <div *ngFor="let topic of listTopic" (click)="getTopicId(topic.topicName)">
                     <ul>
                         <li>{{topic.topicName}}</li>
                     </ul>
@@ -64,7 +64,7 @@
                     <div class="col-md-10"></div>
                     <div class="col-md-2">
                         <mat-card-actions>
-                            <button mat-raised-button color="accent" (click)="checkPermission()">Ask Question</button>
+                            <button mat-raised-button color="accent" (click)="askQuestion()"  (click)="checkPermission()">Ask Question</button>
                         </mat-card-actions>
                     </div>
                 </div>
@@ -73,6 +73,10 @@
                 <div class="row" *ngIf="addQues">
                     <div class="col-md-10">
                         <mat-card>
+                            <mat-card-subtitle>
+                                <app-msg-alert [setMessage]="setMessage" *ngIf="addquesNoError"></app-msg-alert>
+                                <app-error-alert [setMessage]="setMessage" *ngIf="addquesError"></app-error-alert>
+                            </mat-card-subtitle>
                             <mat-card-subtitle>
                                 Ask a public Question
                             </mat-card-subtitle>
@@ -102,8 +106,10 @@
                     <div class="col-md-10">
                         <mat-card *ngFor="let q of showAllQuestionList;let k=index" id="mat-card-style">
                             <mat-card-subtitle *ngIf="answer == k">
-                                <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
-                                <app-error-alert [setMessage]="setMessage"></app-error-alert>
+                                <div *ngIf="closeErrorDiv">
+                                    <app-msg-alert [setMessage]="setMessage"></app-msg-alert>
+                                    <app-error-alert [setMessage]="setMessage"></app-error-alert>
+                                </div>
                             </mat-card-subtitle>
                             <mat-card-content>
                                 <div class="row">
@@ -140,7 +146,8 @@
                                     <div *ngIf="closediv">
                                         <div class="row" *ngIf="answer == k">
                                             <div class="col-md-10">
-                                                <form [formGroup]="answerData" (ngSubmit)="onAnswerSubmit(q.questionId)">
+                                                <form [formGroup]="answerData"
+                                                    (ngSubmit)="onAnswerSubmit(q.questionId)">
                                                     <quill-editor [modules]="config" [styles]="editorStyle"
                                                         (onContentChanged)="maxlength($event)"
                                                         formControlName="answereditor" [placeholder]="placeholder">

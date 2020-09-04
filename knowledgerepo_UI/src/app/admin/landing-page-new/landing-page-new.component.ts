@@ -27,6 +27,10 @@ export class saveAnswerResponse{
   constructor(public msg:string,public status:string){}
 }
 
+export class saveQuestion{
+  constructor(public clientId:number,public topic:string,public question:string,public userEmail:string){}
+}
+
 @Component({
   selector: 'app-landing-page-new',
   templateUrl: './landing-page-new.component.html',
@@ -43,7 +47,7 @@ export class LandingPageNewComponent implements OnInit {
   public error: boolean = false;
   public showListTopic: boolean = false;
   public companyId: number;
-  public topicId: number;
+  public topicName: string;
   public addQues: boolean = false;
   public addquestionData: FormGroup;
   public placeholder: string = 'Maximum 200 words';
@@ -55,13 +59,12 @@ export class LandingPageNewComponent implements OnInit {
   public answer: any = false;
   public closediv:boolean=false;
   public openAnswer:boolean=false;
-  public saveAnswer=new saveAnswer(0,'','');
   public saveAnserRep:saveAnswerResponse;
   setMessage: any = {};
   msg: String; status: String;
-
-  
-  
+  public addquesNoError:boolean=false;
+  public addquesError:boolean=false;
+  public closeErrorDiv:boolean=false;
 
 
   constructor(private depServices: DepartmentService, private router: Router, private _storage: StorageService
@@ -97,7 +100,6 @@ export class LandingPageNewComponent implements OnInit {
     this.questionService.getAllQuestion().subscribe(
       resp => {
         this.showAllQuestionList = resp;
-        console.log(this.showAllQuestionList);
       },
       err => {
         this.errorMessage = "'Server Error /Server Unreachable!";
@@ -174,6 +176,12 @@ export class LandingPageNewComponent implements OnInit {
     // this.answer = !this.answer;
   }
 
+  askQuestion(){
+    this.addquestionData.controls['editor'].setValue('');
+    this.topicName=null;
+    this.companyId=null;
+  }
+
 close(){
   this.closediv=!this.closediv;
 }  
@@ -184,9 +192,9 @@ close(){
     this.companyId = id;
   }
 
-  getTopicId(id) {
+  getTopicId(name) {
 
-    this.topicId = id;
+    this.topicName = name;
   }
   checkPermission() {
     let isUserLoggedIn = this._storage.getSession('isAuthenticated');
@@ -207,8 +215,42 @@ close(){
   }
 
   onsubmit() {
-    this.question = this.addquestionData.value;
 
+    if(this.companyId==null){
+      this.addquesError=true;
+      this.setMessage = { message: "Client is missing", error: true };
+    }
+    else if(this.topicName==null){
+      this.addquesError=true;
+      this.setMessage = { message: "Topic is missing", error: true };
+    }
+    else{
+    let q=this.addquestionData.get('editor').value;
+    let temp=document.createElement("div");
+    temp.innerHTML=q;
+    this.question=temp.innerText;
+    let email=this._storage.getSession('eMail');
+    let output=new saveQuestion(this.companyId,this.topicName,q,email);
+    this.questionService.saveQuestion(output).subscribe(
+      resp=>{
+        this.saveAnserRep=resp;
+        if(this.saveAnserRep.status==='Success'){
+          this.addquesNoError=true;
+          this.setMessage = { message: this.saveAnserRep.msg, msg: true };
+        }
+        this.questionService.getAllQuestion().subscribe(
+          resp => {
+            this.showAllQuestionList = resp;
+          }
+        );
+      },
+      err=>{
+        this.addquesError=true;
+        this.setMessage = { message: this.saveAnserRep.msg, error: true };
+      }
+    );
+
+    }
   }
 
   onAnswerSubmit(id) {
@@ -217,11 +259,12 @@ close(){
     tempDiv.innerHTML=tempAns;
     let ans=tempDiv.innerText;
     let email=this._storage.getSession('eMail');
-    let output=new saveAnswer(id,ans,email);
-    this.questionService.saveQuestion(output).subscribe(
+    let output=new saveAnswer(id,tempAns,email);
+    this.questionService.saveAnswer(output).subscribe(
       resp=>{
         this.saveAnserRep=resp;
         if(this.saveAnserRep.status==='Success'){
+          this.closeErrorDiv=true;
           this.setMessage = { message: this.saveAnserRep.msg, msg: true };
                    
         }
@@ -231,6 +274,7 @@ close(){
           }
         );
       },err=>{
+        this.closeErrorDiv=true;
         this.setMessage = { message: this.saveAnserRep.msg, error: true };
       }
     );
